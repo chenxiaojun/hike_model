@@ -35,7 +35,7 @@ class VCode
     end
 
     def vcode_cache_key(type, account)
-      "kkapi:v1:vcode:#{type}:#{account}"
+      "hike:v1:vcode:#{type}:#{account}"
     end
   end
 end
