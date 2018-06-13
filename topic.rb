@@ -6,7 +6,7 @@ class Topic < ApplicationRecord
   has_one    :topic_counter, dependent: :destroy
   serialize :images, JSON
 
-  default_scope { where.not(status: 'failed') } unless ENV['CURRENT_PROJECT'] == 'kkcms'
+  default_scope { where.not(status: 'failed') } unless ENV['CURRENT_PROJECT'] == 'cms'
 
   enum body_type: { long: 'long', short: 'short' }
   enum status: { pending: 'pending', passed: 'passed', failed: 'failed' }
