@@ -6,6 +6,10 @@ class User < ApplicationRecord
   mount_uploader :avatar, ImageUploader
 
   has_many :topics, dependent: :destroy
+  has_many :actions, dependent: :destroy
+
+  action_store :like,     :topic, counter_cache: true
+  action_store :follow,   :user,  counter_cache: 'followers_count', user_counter_cache: 'following_count'
 
   # 刷新访问时间
   def touch_visit!
@@ -15,6 +19,10 @@ class User < ApplicationRecord
 
   def avatar_path
     avatar.url.presence || wx_avatar
+  end
+
+  def action_likes
+    actions.where(action_type: 'like')
   end
 
   def silenced!(reason, till)
