@@ -1,0 +1,1 @@
+class TopicCounter < ApplicationRecord; end
