@@ -6,6 +6,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, ImageUploader
 
   has_many :topics, dependent: :destroy
+  has_many :activities, dependent: :destroy
   has_many :actions, dependent: :destroy
   has_one :counter, class_name: 'UserCounter', dependent: :destroy
 
