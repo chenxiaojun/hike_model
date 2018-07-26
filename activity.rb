@@ -7,7 +7,7 @@ class Activity < ApplicationRecord
     increment!(:page_views)
   end
 
-  # 活动的状态 报名中，进行中, 已满员，已结束，已取消
+  # 活动的状态 报名中，进行中，已结束，已满员，已取消
   def activity_status
   end
 end
