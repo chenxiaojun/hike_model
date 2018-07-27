@@ -8,6 +8,11 @@ class Activity < ApplicationRecord
     increment!(:page_views)
   end
 
+  def increment_join_numbers
+    increment!(:join_numbers)
+
+  end
+
   # 活动的状态 报名中，进行中，已结束，已满员，已取消
   def activity_status
     if canceled
@@ -25,5 +30,13 @@ class Activity < ApplicationRecord
 
   def allow_cancel?
     %[applying doing overload].include? activity_status
+  end
+
+  def allow_join?
+    activity_status.eql?('applying')
+  end
+
+  def user_joined?(user)
+    activity_joins.where(user: user).exists?
   end
 end
