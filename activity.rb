@@ -22,4 +22,8 @@ class Activity < ApplicationRecord
       'doing'
     end
   end
+
+  def allow_cancel?
+    %[applying doing overload].include? activity_status
+  end
 end
