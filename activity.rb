@@ -12,7 +12,7 @@ class Activity < ApplicationRecord
   def activity_status
     if canceled
       'canceled'
-    elsif activity_joins.passed.count >= mem_limit
+    elsif join_numbers >= mem_limit
       'overload'
     elsif begin_time > Time.zone.now
       'applying'
