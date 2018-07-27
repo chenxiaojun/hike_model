@@ -14,9 +14,9 @@ class Activity < ApplicationRecord
       'canceled'
     elsif activity_joins.passed.count >= mem_limit
       'overload'
-    elsif start_date > Time.zone.today
+    elsif begin_time > Time.zone.now
       'applying'
-    elsif Time.zone.today > end_date
+    elsif Time.zone.now > end_time
       'finished'
     else
       'doing'
