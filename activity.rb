@@ -10,7 +10,10 @@ class Activity < ApplicationRecord
 
   def increment_join_numbers
     increment!(:join_numbers)
+  end
 
+  def increment_apply_numbers
+    increment!(:apply_numbers)
   end
 
   # 活动的状态 报名中，进行中，已结束，已满员，已取消
