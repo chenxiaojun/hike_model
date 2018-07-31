@@ -2,7 +2,7 @@ class Topic < ApplicationRecord
   include TopicCountable
   include Excellentable
 
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   has_one    :topic_counter, dependent: :destroy
   serialize :images, JSON
 

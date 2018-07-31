@@ -1,5 +1,5 @@
 class Activity < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   has_many :activity_joins, dependent: :destroy
   scope :user_visible, -> { where(auth_status: 'passed') }
   scope :search_keyword, ->(keyword) { where('name like ? or destination like ?', "%#{keyword}%", "%#{keyword}%") }
