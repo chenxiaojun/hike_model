@@ -3,6 +3,7 @@ class User < ApplicationRecord
   include UserUniqueValidator
   include UserNameGenerator
   include UserCreator
+  include UserCountable
   mount_uploader :avatar, ImageUploader
 
   has_many :topics, dependent: :destroy
@@ -15,6 +16,8 @@ class User < ApplicationRecord
 
   # 刷新访问时间
   def touch_visit!
+    interval_day = (Time.zone.today - last_visit.to_date).to_i
+    increase_login_days if interval_day >= 1 || counter.login_days.zero?
     self.last_visit = Time.zone.now
     save
   end
