@@ -4,6 +4,7 @@ class User < ApplicationRecord
   include UserNameGenerator
   include UserCreator
   include UserCountable
+  include User::Favorite
   mount_uploader :avatar, ImageUploader
 
   has_many :topics, dependent: :destroy
