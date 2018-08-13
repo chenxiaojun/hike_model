@@ -1,6 +1,7 @@
 class Activity < ApplicationRecord
   belongs_to :user, counter_cache: true
   has_many :activity_joins, dependent: :destroy
+  has_many :comments, as: :target, dependent: :destroy
   scope :user_visible, -> { where(auth_status: 'passed') }
   scope :search_keyword, ->(keyword) { where('name like ? or destination like ?', "%#{keyword}%", "%#{keyword}%") }
 
@@ -41,5 +42,9 @@ class Activity < ApplicationRecord
 
   def user_joined?(user)
     activity_joins.where(user: user).exists?
+  end
+
+  def total_comments
+    comments_count + replies_count
   end
 end
